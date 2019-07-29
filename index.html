@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Poppins:300,400,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="section">
+          <div class="container-fluid">
+            <div id="vue">
+              <div class="row">
+                <div class="options">
+                  
+                    <div class="programming-languages">
+                          <span @click="getData">Programming languages</span>
+                    </div>
+                    <div class="selected-values ">
+                          <ul class="selected-values__selector active">
+                            <li v-for="language in programmingLanguages"> {{ language }} </li>
+                          </ul>
+                    </div>
+                    <div class="technologies">
+                        <span @click="getTech">Technologies</span>
+                    </div>
+                    <div class="selected-values">
+                        <ul class="selected-values__selector active">
+                            <li v-for="technology in technologies"> {{ technology }} </li>
+                          </ul>
+                    </div>
+                    <div class="databases">
+                        <span @click="getDatabases">Databases</span>
+                        <ul class="selected-values__selector active">
+                          <li v-for="database in databases"> {{ database }} </li>
+                        </ul>
+                    </div>
+                
+              </div>
+            </div>
+              </div>
+          </div>
+        </div>
+    </main>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#vue',
+        data: {
+          projects: [],
+          programmingLanguages: [],
+          technologies: [],
+          databases: [],
+          url: {
+            projects: 'array.json',
+          }
+        },
+        // created: {
+        //   function()
+        // },
+          
+        methods: {
+          getData(){
+            axios.get(this.url.projects).then((response) => {
+              // помещаем все данные в стейт
+              this.projects = response.data['projects'];
+              this.programmingLanguages = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
+            })
+          },
+          getTech(){
+            axios.get(this.url.projects).then((response) => {
+              // помещаем все данные в стейт
+              this.projects = response.data['projects'];
+              this.technologies = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['technologies']), []))];
+            })
+          },
+          getDatabases(){
+            axios.get(this.url.projects).then((response) => {
+              // помещаем все данные в стейт
+              this.projects = response.data['projects'];
+              this.databases = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['databases']), []))];
+            })
+          }
+        }
+      })
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>

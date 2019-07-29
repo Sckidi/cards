@@ -1,0 +1,77 @@
+{
+
+    "projects": [
+        {
+            "type": ["Case Study"],
+            "title": "Data-Driven App & Portal for Hospitality Industry",
+            "description": "Azati designed and developed a group of 5 interconnected applications that provide a real-time service, which redefines the traditional flow of ordering & payment in venues, meanwhile working to the benefit of both venue owners and visitors.",
+            "link": "https://azati.ai/portfolio/case-studies/data-driven-app-and-portal/",
+            "image": "https://via.placeholder.com/1600x900",
+            "programming_languages": ["JavaScript", "Python"],
+            "technologies": ["React", "React Native", "Ember", "Flask", "Redis"],
+            "databases": ["PostgreSQL"],
+            "industries": ["Hospitality"],
+            "tags": ["Web", "Mobile"]
+        }, 
+        {
+            "type": ["Case Study"], 
+            "title": "Cloud System for Document Digitization",
+            "description": "Custom system for engineering drawings digitization powered by artificial intelligence to extract data from on-paper maps, schemes, and other technical documents.",
+            "link": "https://azati.ai/portfolio/case-studies/document-digitization-platform/",
+            "image": "https://via.placeholder.com/1600x900",
+            "programming_languages": ["Java", "Python"],
+            "technologies": ["Pandas", "NumPy", "Keras", "Scikit Learn", "Mathpolib", "TensorFlow", "Tesseract"],
+            "databases": ["MongoDB"],
+            "industries": ["Oil & Gas"],
+            "tags": ["Machine Learning", "Web"]
+        }, 
+        {
+            "type": ["Case Study"], 
+            "title": "Inventory Search Engine for Auto Parts Retailer",
+            "description": "Azati designed and developed an intelligent search engine for inventory search enhancing traditional search algorithms. It analyzes the user input and looks for a specific entry. If the algorithm can't find the requested item in the inventory, it explores the characteristics of the object and returns the list of similar products.",
+            "link": "https://azati.ai/portfolio/case-studies/inventory-search-engine/",
+            "image": "https://via.placeholder.com/1600x900",
+            "programming_languages": ["JavaScript", "Python"],
+            "technologies": ["Flask", "React", "Tornado", "Memcached"],
+            "databases": [],
+            "industries": ["Retail", "Automotive"],
+            "tags": [ "Web", "Big Data"]
+        }, 
+        {
+            "type": ["Case Study"], 
+            "title": "Custom Search Platform for Recruitment Agency",
+            "description": "Azati designed and built up a recruitment platform for the staffing firm. The system comprises several interconnected modules microservices. Our solution significantly improves resume search and candidate evaluation, speeds up general hiring processes.",
+            "link": "https://azati.ai/portfolio/case-studies/search-engine-for-recruitment-agency/",
+            "image": "https://via.placeholder.com/1600x900",
+            "programming_languages": ["JavaScript", "Python", "Ruby"],
+            "technologies": ["Keras", "TensorFlow", "Flask", "Ruby on Rails", "React", "NumPy", "Selenium", "Redis"],
+            "databases": ["MongoDB"],
+            "industries": ["Human Resources"],
+            "tags": [ "Web", "Scrapping", "Big Data", "Machine Learning"]
+        },
+        {
+            "type": ["Case Study"], 
+            "title": "Semantic Search Engine for Bioinformatics Company",
+            "description": "Azati designed and developed a semantic search engine powered by machine learning. It extracts the actual meaning from the search query and looks for the most relevant results across huge scientific datasets.",
+            "link": "https://azati.ai/portfolio/case-studies/semantic-search-engine/",
+            "image": "https://via.placeholder.com/1600x900",
+            "programming_languages": ["Python"],
+            "technologies": ["Word2Vec", "TensorFlow", "Scikit Learn", "Flask", "Redis"],
+            "databases": [],
+            "industries": ["Life Sciences"],
+            "tags": [ "Web", "Big Data", "Machine Learning"]
+        },
+        {
+            "type": ["Azati Labs"], 
+            "title": "Road Pothole Detection with Machine Learning and Computer Vision",
+            "description": "As the part of Azati Labs, our data scientists have successfully built a prototype of the system, that can detect road defects analyzing images and videos. This prototype can be useful to municipal government to simplify roads defect detection to calculate road repairing costs automatically. The information extracted by the prototype can also be used by automotive manufacturers to help smart cars avoid potholes and decrease overall repairing costs.",
+            "link": "https://azati.ai/portfolio/azati-labs/road-pothole-detection/",
+            "image": "https://via.placeholder.com/1600x900",
+            "programming_languages": ["Python"],
+            "technologies": ["Caffe", "OpenCV"],
+            "databases": [],
+            "industries": ["Automotive"],
+            "tags": ["Machine Learning", "Computer Vision"]
+        }
+    ]
+}

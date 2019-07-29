@@ -1,0 +1,57 @@
+body main{
+    margin: 0;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: #5d5d5d;
+}
+
+.options{
+    max-width: 300px;
+    /* display: flex; */
+   
+}
+ .programming-languages, .technologies, .databases{
+    position: relative;
+    width: 200px;
+    height: 40px;
+    background-color: #ff9620;
+    margin-right: 10px;
+    color: #fff;
+    font-size: 15px;
+    display: block;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+.selector-values__selector {
+    margin: 0px;
+    padding: 0px;
+    transition: 1s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+ .selected-values__selector.active{
+    visibility: visible;
+    opacity: 1;
+}   
+.selected-values__selector li{
+    color: #000;
+    list-style: none;
+    padding: 10px;
+    transition: .5s ease;
+    border-bottom: 1px solid darkgrey;
+    cursor: pointer;
+    text-align: left;
+}
+.selected-values__selector li:last-of-type{
+    border-bottom: none;
+}
+
+@media screen and (min-width: 1200px){
+    .container-fluid {
+      max-width: 1050px;
+    }
+  }
