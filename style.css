@@ -6,13 +6,13 @@ body main{
 }
 
 .options{
+    
+    display: flex;
     max-width: 300px;
-    /* display: flex; */
-   
 }
  .programming-languages, .technologies, .databases{
     position: relative;
-    width: 200px;
+    width: 800px;
     height: 40px;
     background-color: #ff9620;
     margin-right: 10px;

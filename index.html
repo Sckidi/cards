@@ -19,32 +19,33 @@
             <div id="vue">
               <div class="row">
                 <div class="options">
-                  
-                    <div class="programming-languages">
-                          <span @click="getData">Programming languages</span>
+                    <div class="programming-languages col-4" >
+                      <span @click="getData">Programming languages</span>
                     </div>
+                    <div class="databases col-4">
+                      <span @click="getDatabases">Databases</span>
+                    </div>
+                    <div class="technologies col-4">
+                      <span @click="getTech">Technologies</span>
+                    </div>
+                </div>    
                     <div class="selected-values ">
                           <ul class="selected-values__selector active">
                             <li v-for="language in programmingLanguages"> {{ language }} </li>
                           </ul>
-                    </div>
-                    <div class="technologies">
-                        <span @click="getTech">Technologies</span>
-                    </div>
+                    
                     <div class="selected-values">
                         <ul class="selected-values__selector active">
                             <li v-for="technology in technologies"> {{ technology }} </li>
                           </ul>
                     </div>
-                    <div class="databases">
-                        <span @click="getDatabases">Databases</span>
+                    <div class="selected-values"></div>
                         <ul class="selected-values__selector active">
                           <li v-for="database in databases"> {{ database }} </li>
                         </ul>
                     </div>
-                
               </div>
-            </div>
+            
               </div>
           </div>
         </div>
