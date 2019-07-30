@@ -20,47 +20,24 @@
       <div id="vue">
         <div class="row">
           <div class="options">
-            <div class="custom-vue-selector programming-languages">
-              <p class="custom-vue-selector__label" @click="handleSelectorLabelClick('programmingLanguages')">Programming Languages</p>
-              <ul class="custom-vue-selector__selector" v-bind:class="{ active: selectorStates.programmingLanguages }">
-                <li class="custom-vue-selector__selector__item" v-for="language in models.programmingLanguages"> {{ language }} </li>
-              </ul>
-            </div> 
-            <div class="custom-vue-selector technologies">
-              <p class="custom-vue-selector__label" @click="handleSelectorLabelClick('technologies')">Technologies</p>
-              <ul class="custom-vue-selector__selector" v-bind:class="{ active: selectorStates.technologies }">
-                <li class="custom-vue-selector__selector__item" v-for="technology in models.technologies"> {{ technology }} </li>
-              </ul>
-            </div>
-            <div class="custom-vue-selector databases">
-              <p class="custom-vue-selector__label" @click="handleSelectorLabelClick('databases')">Databases</p>
-              <ul class="custom-vue-selector__selector" v-bind:class="{ active: selectorStates.databases }">
-                <li class="custom-vue-selector__selector__item" v-for="database in models.databases"> {{ database }} </li>
-              </ul>
-            </div>
+            <vue-selector :values="models.programmingLanguages" title="Programming Language"></vue-selector>
+            <vue-selector :values="models.technologies" title="Technologies"></vue-selector>
+            <vue-selector :values="models.databases" title="Databases"></vue-selector>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <vue-selector>
 
-  </vue-selector>
+  <!-- Register Custom Components First -->
+  <script src="./VueSelector.js"></script>
   
+  <!-- Register Vue After all -->
   <script type="text/javascript">
-    import VueSelector from './VueSelector.vue';
-    var app = new Vue({
+  // Create new Vue.js Instance
+  var app = new Vue({
       el: '#vue',
-      
       data: {
-
-        selectorStates: {
-          // Variables which manage selector states: if the specific selector is opened or not
-          databases: false,
-          programmingLanguages: false,
-          technologies: false,
-        },
-        
 
         models: {
           // Models extracted from JSON
@@ -75,9 +52,10 @@
           projects: 'array.json',
         }
       },
+
       components: {
-          'vue-selector': VueSelector
-        },
+        VueSelector: VueSelector
+      },
 
       created() {
         // Load data when component is created
@@ -89,27 +67,16 @@
           // Load data using all in one method
           axios.get(this.url.projects).then((response) => {
             this.models.projects = response.data['projects'];
-            this.models.programmingLanguages = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
-            this.models.technologies = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['technologies']), []))];
-            this.models.databases = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['databases']), []))];
+            this.models.programmingLanguages = [...new Set(response.data['projects'].reduce((accumulator,
+              currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
+            this.models.technologies = [...new Set(response.data['projects'].reduce((accumulator,
+              currentValue) => accumulator.concat(currentValue['technologies']), []))];
+            this.models.databases = [...new Set(response.data['projects'].reduce((accumulator, currentValue) =>
+              accumulator.concat(currentValue['databases']), []))];
           })
         },
-        handleSelectorLabelClick(selectorValue) {
-          // Reverses current value of state
-          this.selectorStates[selectorValue] = !this.selectorStates[selectorValue];
-        }
       }
     })
   </script>
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
 </body>
