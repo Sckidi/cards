@@ -6,6 +6,7 @@ body .custom-vue-selector-wrapper {
 }
 
 .options {
+    display: flex;
     max-width: 300px;
 }
 
@@ -13,9 +14,10 @@ body .custom-vue-selector-wrapper {
     position: relative;
     max-width: 300px;
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 13px;
     text-align: center;
     cursor: pointer;
+    padding: 7px;
 }
 
 .custom-vue-selector__selector {
@@ -35,16 +37,21 @@ body .custom-vue-selector-wrapper {
     padding: 10px 15px;
     border: 1px solid darkgrey;
     border-top: none;
+    width: 155px;
+    padding: 5px 0 5px 0;
+    margin-left: 30px;
 }
-
+.custom-vue-selector__selector__item:hover{
+    background-color: #fcb668;
+}
 .custom-vue-selector__label {
     margin-bottom: 0px;
     padding: 10px;
     background-color: #ff9620;
     color: #fff;
     font-weight: 500;
+    background-image: url('/cards/img/down-arrow.png');
 }
-
 .selected-values__selector li:last-of-type {
     border-bottom: none;
 }
