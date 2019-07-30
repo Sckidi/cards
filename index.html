@@ -5,95 +5,105 @@
   <meta charset="UTF-8">
   <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Poppins:300,400,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Poppins:300,400,700&amp;display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <main>
-        <div class="section">
-          <div class="container-fluid">
-            <div id="vue">
-              <div class="row">
-                <div class="options">
-                    <div class="programming-languages col-4" >
-                      <span @click="getData">Programming languages</span>
-                    </div>
-                    <div class="databases col-4">
-                      <span @click="getDatabases">Databases</span>
-                    </div>
-                    <div class="technologies col-4">
-                      <span @click="getTech">Technologies</span>
-                    </div>
-                </div>    
-                    <div class="selected-values ">
-                          <ul class="selected-values__selector active">
-                            <li v-for="language in programmingLanguages"> {{ language }} </li>
-                          </ul>
-                    
-                    <div class="selected-values">
-                        <ul class="selected-values__selector active">
-                            <li v-for="technology in technologies"> {{ technology }} </li>
-                          </ul>
-                    </div>
-                    <div class="selected-values"></div>
-                        <ul class="selected-values__selector active">
-                          <li v-for="database in databases"> {{ database }} </li>
-                        </ul>
-                    </div>
-              </div>
-            
-              </div>
+  <div class="section custom-vue-selector-wrapper">
+    <div class="container-fluid">
+      <div id="vue">
+        <div class="row">
+          <div class="options">
+            <div class="custom-vue-selector programming-languages">
+              <p class="custom-vue-selector__label" @click="handleSelectorLabelClick('programmingLanguages')">Programming Languages</p>
+              <ul class="custom-vue-selector__selector" v-bind:class="{ active: selectorStates.programmingLanguages }">
+                <li class="custom-vue-selector__selector__item" v-for="language in models.programmingLanguages"> {{ language }} </li>
+              </ul>
+            </div> 
+            <div class="custom-vue-selector technologies">
+              <p class="custom-vue-selector__label" @click="handleSelectorLabelClick('technologies')">Technologies</p>
+              <ul class="custom-vue-selector__selector" v-bind:class="{ active: selectorStates.technologies }">
+                <li class="custom-vue-selector__selector__item" v-for="technology in models.technologies"> {{ technology }} </li>
+              </ul>
+            </div>
+            <div class="custom-vue-selector databases">
+              <p class="custom-vue-selector__label" @click="handleSelectorLabelClick('databases')">Databases</p>
+              <ul class="custom-vue-selector__selector" v-bind:class="{ active: selectorStates.databases }">
+                <li class="custom-vue-selector__selector__item" v-for="database in models.databases"> {{ database }} </li>
+              </ul>
+            </div>
           </div>
         </div>
-    </main>
-    <script type="text/javascript">
-      var app = new Vue({
-        el: '#vue',
-        data: {
+      </div>
+    </div>
+  </div>
+  <vue-selector>
+
+  </vue-selector>
+  
+  <script type="text/javascript">
+    import VueSelector from './VueSelector.vue';
+    var app = new Vue({
+      el: '#vue',
+      
+      data: {
+
+        selectorStates: {
+          // Variables which manage selector states: if the specific selector is opened or not
+          databases: false,
+          programmingLanguages: false,
+          technologies: false,
+        },
+        
+
+        models: {
+          // Models extracted from JSON
+          databases: [],
           projects: [],
           programmingLanguages: [],
           technologies: [],
-          databases: [],
-          url: {
-            projects: 'array.json',
-          }
         },
-        // created: {
-        //   function()
-        // },
-          
-        methods: {
-          getData(){
-            axios.get(this.url.projects).then((response) => {
-              // помещаем все данные в стейт
-              this.projects = response.data['projects'];
-              this.programmingLanguages = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
-            })
-          },
-          getTech(){
-            axios.get(this.url.projects).then((response) => {
-              // помещаем все данные в стейт
-              this.projects = response.data['projects'];
-              this.technologies = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['technologies']), []))];
-            })
-          },
-          getDatabases(){
-            axios.get(this.url.projects).then((response) => {
-              // помещаем все данные в стейт
-              this.projects = response.data['projects'];
-              this.databases = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['databases']), []))];
-            })
-          }
+
+        url: {
+          // Basic JSON Config
+          projects: 'array.json',
         }
-      })
-    </script>
+      },
+      components: {
+          'vue-selector': VueSelector
+        },
+
+      created() {
+        // Load data when component is created
+        this.loadDataFromFile()
+      },
+
+      methods: {
+        loadDataFromFile() {
+          // Load data using all in one method
+          axios.get(this.url.projects).then((response) => {
+            this.models.projects = response.data['projects'];
+            this.models.programmingLanguages = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
+            this.models.technologies = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['technologies']), []))];
+            this.models.databases = [...new Set(response.data['projects'].reduce((accumulator, currentValue) => accumulator.concat(currentValue['databases']), []))];
+          })
+        },
+        handleSelectorLabelClick(selectorValue) {
+          // Reverses current value of state
+          this.selectorStates[selectorValue] = !this.selectorStates[selectorValue];
+        }
+      }
+    })
+  </script>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

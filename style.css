@@ -1,57 +1,56 @@
-body main{
+body .custom-vue-selector-wrapper {
     margin: 0;
     padding: 15px;
     font-family: 'Montserrat', sans-serif;
     color: #5d5d5d;
 }
 
-.options{
-    
-    display: flex;
+.options {
     max-width: 300px;
 }
- .programming-languages, .technologies, .databases{
+
+.custom-vue-selector {
     position: relative;
-    width: 800px;
-    height: 40px;
-    background-color: #ff9620;
-    margin-right: 10px;
-    color: #fff;
+    max-width: 300px;
+    margin-bottom: 20px;
     font-size: 15px;
-    display: block;
-    font-weight: 400;
-    cursor: pointer;
     text-align: center;
-    padding-top: 10px;
+    cursor: pointer;
 }
 
-
-.selector-values__selector {
+.custom-vue-selector__selector {
     margin: 0px;
     padding: 0px;
-    transition: 1s ease;
-    opacity: 0;
     visibility: hidden;
-}
- .selected-values__selector.active{
-    visibility: visible;
-    opacity: 1;
-}   
-.selected-values__selector li{
-    color: #000;
+    height: 0px;
     list-style: none;
-    padding: 10px;
-    transition: .5s ease;
-    border-bottom: 1px solid darkgrey;
-    cursor: pointer;
-    text-align: left;
 }
-.selected-values__selector li:last-of-type{
+
+.custom-vue-selector__selector.active{
+    visibility: visible;
+    height: initial;
+}
+
+.custom-vue-selector__selector__item {
+    padding: 10px 15px;
+    border: 1px solid darkgrey;
+    border-top: none;
+}
+
+.custom-vue-selector__label {
+    margin-bottom: 0px;
+    padding: 10px;
+    background-color: #ff9620;
+    color: #fff;
+    font-weight: 500;
+}
+
+.selected-values__selector li:last-of-type {
     border-bottom: none;
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1200px) {
     .container-fluid {
-      max-width: 1050px;
+        max-width: 1050px;
     }
-  }
+}
