@@ -9,8 +9,6 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -29,13 +27,15 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
   <!-- Register Custom Components First -->
   <script src="./VueSelector.js"></script>
-  
+
   <!-- Register Vue After all -->
-  <script type="text/javascript">
-  // Create new Vue.js Instance
-  var app = new Vue({
+  <script type="text/javascript" defer>
+    // Create new Vue.js Instance
+    var app = new Vue({
       el: '#vue',
       data: {
 
@@ -65,15 +65,15 @@
       methods: {
         loadDataFromFile() {
           // Load data using all in one method
-          axios.get(this.url.projects).then((response) => {
-            this.models.projects = response.data['projects'];
-            this.models.programmingLanguages = [...new Set(response.data['projects'].reduce((accumulator,
-              currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
-            this.models.technologies = [...new Set(response.data['projects'].reduce((accumulator,
-              currentValue) => accumulator.concat(currentValue['technologies']), []))];
-            this.models.databases = [...new Set(response.data['projects'].reduce((accumulator, currentValue) =>
-              accumulator.concat(currentValue['databases']), []))];
-          })
+          fetch(this.url.projects).then((response) => response.json()).then((response) => {
+              this.models.projects = response['projects'];
+              this.models.programmingLanguages = [...new Set(response['projects'].reduce((accumulator,
+                currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
+              this.models.technologies = [...new Set(response['projects'].reduce((accumulator,
+                currentValue) => accumulator.concat(currentValue['technologies']), []))];
+              this.models.databases = [...new Set(response['projects'].reduce((accumulator, currentValue) =>
+                accumulator.concat(currentValue['databases']), []))];
+            }).catch((error) => console.log("Error while fetching the data"))
         },
       }
     })
