@@ -17,11 +17,20 @@
     <div class="container-fluid">
       <div id="vue" class="col-lg-12">
         <div class="row">
-          <div class="options">
-            <vue-selector :values="models.programmingLanguages" title="Programming Language" @selector='selectedValue'></vue-selector>
-            <vue-selector :values="models.technologies" title="Technologies"></vue-selector>
-            <vue-selector :values="models.databases" title="Databases"></vue-selector>
-            <vue-selector :values="models.industries" title="Industries"></vue-selector>
+          <div class="col-12 col-md-3">
+            <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values"
+              title="Programming Languages"></vue-selector>
+          </div>
+          <div class="col-12 col-md-2">
+            <vue-selector @value-selected="changeSelectedValues" :values="technologies.values" title="Technologies">
+            </vue-selector>
+          </div>
+          <div class="col-12 col-md-2">
+            <vue-selector @value-selected="changeSelectedValues" :values="databases.values" title="Databases">
+            </vue-selector>
+          </div>
+          <div class="col-12 col-md-2">
+            <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries"></vue-selector>
           </div>
         </div>
       </div>
@@ -35,26 +44,27 @@
 
   <!-- Register Vue After all -->
   <script type="text/javascript" defer>
-    // Create new Vue.js Instance
     var app = new Vue({
       el: '#vue',
       data: {
-          isOpen: true,
-          selectedValue: [],
-          
-        models: {
-          // Models extracted from JSON
-          databases: [],
-          projects: [],
-          programmingLanguages: [],
-          technologies: [],
-          industries: []
+        // Models extracted from JSON
+        databases: {
+          selectedValue: '',
+          values: []
         },
-
-        url: {
-          // Basic JSON Config
-          projects: 'array.json',
-        }
+        programmingLanguages: {
+          selectedValue: '',
+          values: []
+        },
+        technologies: {
+          selectedValue: '',
+          values: []
+        },
+        industries: {
+          selectedValue: '',
+          values: []
+        },
+        jsonLocation: 'array.json',
       },
 
       components: {
@@ -69,18 +79,35 @@
       methods: {
         loadDataFromFile() {
           // Load data using all in one method
-          fetch(this.url.projects).then((response) => response.json()).then((response) => {
-              this.models.projects = response['projects'];
-              this.models.programmingLanguages = [...new Set(response['projects'].reduce((accumulator,
-                currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
-              this.models.technologies = [...new Set(response['projects'].reduce((accumulator,
-                currentValue) => accumulator.concat(currentValue['technologies']), []))];
-              this.models.databases = [...new Set(response['projects'].reduce((accumulator, currentValue) =>
-                accumulator.concat(currentValue['databases']), []))];
-              this.models.industries = [...new Set(response['projects'].reduce((accumulator, currentValue) =>
-                accumulator.concat(currentValue['industries']), []))];
-            }).catch((error) => console.log("Error while fetching the data"))
+          fetch(this.jsonLocation).then((response) => response.json()).then((response) => {
+            this.programmingLanguages.values = [...new Set(response['projects'].reduce((accumulator,
+              currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
+            this.technologies.values = [...new Set(response['projects'].reduce((accumulator,
+              currentValue) => accumulator.concat(currentValue['technologies']), []))];
+            this.databases.values = [...new Set(response['projects'].reduce((accumulator, currentValue) =>
+              accumulator.concat(currentValue['databases']), []))];
+            this.industries.values = [...new Set(response['projects'].reduce((accumulator, currentValue) =>
+              accumulator.concat(currentValue['industries']), []))];
+          }).catch((error) => console.log("Error while fetching the data"))
         },
+        changeSelectedValues(title, value) {
+          switch (title) {
+            case 'Databases':
+              this.databases.selectedValue = value;
+              break;
+            case 'Programming Languages':
+              this.programmingLanguages.selectedValue = value;
+              break;
+            case 'Technologies':
+              this.technologies.selectedValue = value;
+              break;
+            case 'Industries':
+              this.technologies.selectedValue = value;
+              break;
+            default:
+              break;
+          }
+        }
       }
     })
   </script>
