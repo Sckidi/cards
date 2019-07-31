@@ -18,7 +18,7 @@
       <div id="vue" class="col-lg-12">
         <div class="row">
           <div class="options">
-            <vue-selector :values="models.programmingLanguages" title="Programming Language"></vue-selector>
+            <vue-selector :values="models.programmingLanguages" title="Programming Language" @selector='selectedValue'></vue-selector>
             <vue-selector :values="models.technologies" title="Technologies"></vue-selector>
             <vue-selector :values="models.databases" title="Databases"></vue-selector>
             <vue-selector :values="models.industries" title="Industries"></vue-selector>
@@ -39,7 +39,9 @@
     var app = new Vue({
       el: '#vue',
       data: {
-
+          isOpen: true,
+          selectedValue: [],
+          
         models: {
           // Models extracted from JSON
           databases: [],
