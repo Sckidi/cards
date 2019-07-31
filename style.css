@@ -5,6 +5,12 @@ body .custom-vue-selector-wrapper {
     color: #5d5d5d;
 }
 
+.azati-portfolio__card-wrapper{
+    border: 1px solid darkgrey;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
 .custom-vue-selector {
     position: relative;
     max-width: 300px;

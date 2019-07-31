@@ -30,7 +30,16 @@
             </vue-selector>
           </div>
           <div class="col-12 col-md-2">
-            <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries"></vue-selector>
+            <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries">
+            </vue-selector>
+          </div>
+        </div>
+        <div class="row">
+          <div v-for="(project, index) in this.sortedProjects" :key="index" class="col-12 col-md-4">
+            <div class="azati-portfolio__card-wrapper">
+              <p>{{project.title}}</p>
+              <p>{{project.description}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -49,6 +58,7 @@
       data: {
         // Models extracted from JSON
         projects: [],
+        sortedProjects: [],
         databases: {
           selectedValue: '',
           values: []
@@ -65,22 +75,17 @@
           selectedValue: '',
           values: []
         },
+        // JSON Settings
         jsonLocation: 'array.json',
       },
 
       components: {
         VueSelector: VueSelector
       },
-      // computed: {
-        
-      // },
+
       created() {
         // Load data when component is created
         this.loadDataFromFile()
-      },
-      mounted() {
-        this.filteredList(),
-        console.log(this.projects)
       },
 
       methods: {
@@ -88,6 +93,7 @@
           // Load data using all in one method
           fetch(this.jsonLocation).then((response) => response.json()).then((response) => {
             this.projects = response['projects'];
+            this.sortedProjects = response['projects'];
             this.programmingLanguages.values = [...new Set(response['projects'].reduce((accumulator,
               currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
             this.technologies.values = [...new Set(response['projects'].reduce((accumulator,
@@ -96,6 +102,7 @@
               accumulator.concat(currentValue['databases']), []))];
             this.industries.values = [...new Set(response['projects'].reduce((accumulator, currentValue) =>
               accumulator.concat(currentValue['industries']), []))];
+            return response['projects']
           }).catch((error) => console.log("Error while fetching the data"))
         },
         changeSelectedValues(title, value) {
@@ -115,9 +122,19 @@
             default:
               break;
           }
+          this.reSortProjects()
         },
-        filteredList() {
-          console.log(this.projects.filter(project => project.programmingLanguages.includes(this.selectedValue)))
+        reSortProjects() {
+          // Create copy of the initial projects array
+          sortedProjects = [...this.projects];
+
+          // Filter by programming language
+          if (this.programmingLanguages.selectedValue.length >= 0) {
+            sortedProjects = sortedProjects.filter(project => project.programming_languages.includes(this.programmingLanguages.selectedValue))
+          }
+          
+          // Set state after all
+          this.sortedProjects = sortedProjects;
         }
       }
     })
