@@ -48,6 +48,7 @@
       el: '#vue',
       data: {
         // Models extracted from JSON
+        projects: [],
         databases: {
           selectedValue: '',
           values: []
@@ -70,16 +71,23 @@
       components: {
         VueSelector: VueSelector
       },
-
+      // computed: {
+        
+      // },
       created() {
         // Load data when component is created
         this.loadDataFromFile()
+      },
+      mounted() {
+        this.filteredList(),
+        console.log(this.projects)
       },
 
       methods: {
         loadDataFromFile() {
           // Load data using all in one method
           fetch(this.jsonLocation).then((response) => response.json()).then((response) => {
+            this.projects = response['projects'];
             this.programmingLanguages.values = [...new Set(response['projects'].reduce((accumulator,
               currentValue) => accumulator.concat(currentValue['programming_languages']), []))];
             this.technologies.values = [...new Set(response['projects'].reduce((accumulator,
@@ -107,6 +115,9 @@
             default:
               break;
           }
+        },
+        filteredList() {
+          console.log(this.projects.filter(project => project.programmingLanguages.includes(this.selectedValue)))
         }
       }
     })
