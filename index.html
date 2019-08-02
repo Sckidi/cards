@@ -32,16 +32,20 @@
             </vue-selector>
           </div>
           <div class="col-12 col-md-3">
-            <button v-on:click="resetFilers">Reset</button>
+            <button class="reset-button" v-on:click="resetFilers">Reset</button>
           </div>
         </div>
         <div class="row">
-          <div v-for="(project, index) in this.sortedProjects" :key="index" class="col-12 col-md-4">
+            <div class="sidebar">
+                <div></div>
+              </div>
+          <div v-for="(project, index) in this.sortedProjects" :key="index" class="col-8 col-md-4">
             <div class="azati-portfolio__card-wrapper">
               <p>{{project.title}}</p>
               <p>{{project.description}}</p>
             </div>
           </div>
+          
         </div>
       </div>
     </div>

@@ -18,7 +18,11 @@ body .custom-vue-selector-wrapper {
     margin-bottom: 20px;
     font-size: 13px;
 }
-
+.left-selector {
+    border: 1px solid black;
+    width: 155px;
+    height: 900px;
+}
 .custom-vue-selector__selector {
     margin: 0px;
     padding: 0px;
@@ -29,7 +33,20 @@ body .custom-vue-selector-wrapper {
     z-index: 1;
     background-color: white;
 }
-
+.reset-button {
+    border: solid 1px transparent;
+    border-radius: 4px;
+    margin-top: 25px;
+    width: 150px;
+}
+.reset-button:active{
+    transform: translateY(1px);
+   filter: saturate(150%);
+}
+.reset-button:hover{
+   background-color: #7e7e7e;
+   border-color: currentColor;
+}
 .custom-vue-selector__selector.active {
     visibility: visible;
     height: initial;
