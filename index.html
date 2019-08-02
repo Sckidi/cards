@@ -21,15 +21,15 @@
             <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values"
               title="Programming Languages"></vue-selector>
           </div>
-          <div class="col-12 col-md-2">
+          <!-- <div class="col-12 col-md-3">
             <vue-selector @value-selected="changeSelectedValues" :values="technologies.values" title="Technologies">
             </vue-selector>
-          </div>
-          <div class="col-12 col-md-2">
+          </div> -->
+          <div class="col-12 col-md-3">
             <vue-selector @value-selected="changeSelectedValues" :values="databases.values" title="Databases">
             </vue-selector>
           </div>
-          <div class="col-12 col-md-2">
+          <div class="col-12 col-md-3">
             <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries">
             </vue-selector>
           </div>
@@ -132,6 +132,19 @@
           if (this.programmingLanguages.selectedValue.length >= 0) {
             sortedProjects = sortedProjects.filter(project => project.programming_languages.includes(this.programmingLanguages.selectedValue))
           }
+          // Filter by databases
+           if (this.databases.selectedValue.length >= 0) {
+            sortedProjects = sortedProjects.filter(project => project.databases.includes(this.databases.selectedValue))
+          }
+          //   // Filter by technologies
+          //  if (this.technologies.selectedValue.length >= 0) {
+          //   sortedProjects = sortedProjects.filter(project => project.technologies.includes(this.technologies.selectedValue))
+          // }
+          
+          // // Filter by industries
+          // if (this.databases.selectedValue.length >= 0) {
+          //   sortedProjects = sortedProjects.filter(project => project.industries.includes(this.industries.selectedValue))
+          // }
           
           // Set state after all
           this.sortedProjects = sortedProjects;
