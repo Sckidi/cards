@@ -2,7 +2,7 @@ let VueSelector = Vue.component('vue-selector', {
   template: `
     <div class="custom-vue-selector">
       <p class="custom-vue-selector__label"> {{ title }} </p>
-      <p class="custom-vue-selector__value" @click="handleSelectorLabelClick('programmingLanguages')">{{selectedValue}}</p>
+      <p class="custom-vue-selector__value" @click="handleSelectorLabelClick('programmingLanguages')">{{selected_value}}</p>
       <ul class="custom-vue-selector__selector" v-bind:class="{ active: isOpened }">
           <li class="custom-vue-selector__selector__item" v-on:click="handleSelectorElementClick(language)" v-for="language in values">{{language}}</li>
       </ul>
@@ -11,12 +11,13 @@ let VueSelector = Vue.component('vue-selector', {
   data() {
     return {
       isOpened: false,
-      selectedValue: 'Nothing selected'
+      // selectedValue: 'Nothing selected'
     }
   },
   props: {
     values: Array,
-    title: String
+    title: String,
+    selected_value: String
   },
   methods: {
     handleSelectorLabelClick() {
@@ -25,7 +26,7 @@ let VueSelector = Vue.component('vue-selector', {
     },
     handleSelectorElementClick(value) {
       // Assigns selected value to var in state
-      this.selectedValue = value;
+      // this.selectedValue = value;
       // Send data to parent
       this.$emit('value-selected', this.title, value);
       // Close selector

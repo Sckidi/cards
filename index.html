@@ -19,19 +19,20 @@
         <div class="row">
           <div class="col-12 col-md-3">
             <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values"
-              title="Programming Languages"></vue-selector>
+              title="Programming Languages" :selected_value="programmingLanguages.selectedValue"></vue-selector>
           </div>
-          <!-- <div class="col-12 col-md-3">
-            <vue-selector @value-selected="changeSelectedValues" :values="technologies.values" title="Technologies">
-            </vue-selector>
-          </div> -->
           <div class="col-12 col-md-3">
-            <vue-selector @value-selected="changeSelectedValues" :values="databases.values" title="Databases">
+            <vue-selector @value-selected="changeSelectedValues" :values="databases.values" title="Databases"
+              :selected_value="databases.selectedValue">
             </vue-selector>
           </div>
           <div class="col-12 col-md-3">
-            <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries">
+            <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries"
+              :selected_value="industries.selectedValue">
             </vue-selector>
+          </div>
+          <div class="col-12 col-md-3">
+            <button v-on:click="resetFilers">Reset</button>
           </div>
         </div>
         <div class="row">
@@ -60,19 +61,19 @@
         projects: [],
         sortedProjects: [],
         databases: {
-          selectedValue: '',
+          selectedValue: 'Nothing Selected',
           values: []
         },
         programmingLanguages: {
-          selectedValue: '',
+          selectedValue: 'Nothing Selected',
           values: []
         },
         technologies: {
-          selectedValue: '',
+          selectedValue: 'Nothing Selected',
           values: []
         },
         industries: {
-          selectedValue: '',
+          selectedValue: 'Nothing Selected',
           values: []
         },
         // JSON Settings
@@ -117,7 +118,7 @@
               this.technologies.selectedValue = value;
               break;
             case 'Industries':
-              this.technologies.selectedValue = value;
+              this.industries.selectedValue = value;
               break;
             default:
               break;
@@ -129,25 +130,31 @@
           sortedProjects = [...this.projects];
 
           // Filter by programming language
-          if (this.programmingLanguages.selectedValue.length >= 0) {
-            sortedProjects = sortedProjects.filter(project => project.programming_languages.includes(this.programmingLanguages.selectedValue))
+          if (this.programmingLanguages.selectedValue.length > 0  && this.programmingLanguages.selectedValue != 'Nothing Selected') {
+            sortedProjects = sortedProjects.filter(project => project.programming_languages.includes(this
+              .programmingLanguages.selectedValue))
           }
           // Filter by databases
-           if (this.databases.selectedValue.length >= 0) {
-            sortedProjects = sortedProjects.filter(project => project.databases.includes(this.databases.selectedValue))
+          if (this.databases.selectedValue.length > 0 && this.databases.selectedValue != 'Nothing Selected') {
+            sortedProjects = sortedProjects.filter(project => project.databases.includes(this.databases
+              .selectedValue))
           }
-          //   // Filter by technologies
-          //  if (this.technologies.selectedValue.length >= 0) {
-          //   sortedProjects = sortedProjects.filter(project => project.technologies.includes(this.technologies.selectedValue))
-          // }
-          
-          // // Filter by industries
-          // if (this.databases.selectedValue.length >= 0) {
-          //   sortedProjects = sortedProjects.filter(project => project.industries.includes(this.industries.selectedValue))
-          // }
-          
+
+          // Filter by industries
+          if (this.industries.selectedValue.length > 0 && this.industries.selectedValue != 'Nothing Selected') {
+            console.log("Fired");
+            sortedProjects = sortedProjects.filter(project => project.industries.includes(this.industries
+              .selectedValue))
+          }
+
           // Set state after all
           this.sortedProjects = sortedProjects;
+        },
+        resetFilers() {
+          this.programmingLanguages.selectedValue = 'Nothing Selected';
+          this.databases.selectedValue = 'Nothing Selected';
+          this.industries.selectedValue = 'Nothing Selected';
+          this.reSortProjects()
         }
       }
     })
