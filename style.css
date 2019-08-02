@@ -1,3 +1,4 @@
+    
 body .custom-vue-selector-wrapper {
     margin: 0;
     padding: 15px;
@@ -24,6 +25,9 @@ body .custom-vue-selector-wrapper {
     visibility: hidden;
     height: 0px;
     list-style: none;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
 }
 
 .custom-vue-selector__selector.active {
@@ -34,12 +38,11 @@ body .custom-vue-selector-wrapper {
 .custom-vue-selector__selector__item {
     border: 1px solid darkgrey;
     border-top: none;
-    width: 155px;
+    width: 225px;
     padding: 5px;
-    width: 100%;
     cursor: pointer;
+    z-index: 9999;
 }
-
 .custom-vue-selector__selector__item:hover {
     background-color: #fbfbfb;
 }
