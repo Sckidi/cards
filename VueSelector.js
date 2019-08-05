@@ -4,7 +4,9 @@ let VueSelector = Vue.component('vue-selector', {
       <p class="custom-vue-selector__label"> {{ title }} </p>
       <p class="custom-vue-selector__value" @click="handleSelectorLabelClick('programmingLanguages')">{{selected_value}}</p>
       <ul class="custom-vue-selector__selector" v-bind:class="{ active: isOpened }">
-          <li class="custom-vue-selector__selector__item" v-on:click="handleSelectorElementClick(language)" v-for="language in values">{{language}}</li>
+          <li class="custom-vue-selector__selector__item" v-on:click="handleSelectorElementClick(language)" v-for="language in values">{{language}}
+
+          </li>
       </ul>
     </div>
   `,
@@ -31,6 +33,9 @@ let VueSelector = Vue.component('vue-selector', {
       this.$emit('value-selected', this.title, value);
       // Close selector
       this.isOpened = !this.isOpened;
+    },
+    countEntyOccurrences(projects, programming_languages) {
+      return projects.filter(element => element === programming_languages).length 
     }
   },
 })

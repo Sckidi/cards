@@ -14,11 +14,7 @@ body .custom-vue-selector-wrapper {
     box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     border-radius: 5px 5px 0 0;
 }
-.multiple-selector{
-    border: 1px solid darkgray;
-    text-align: center;
-    padding-top: 18px;
-}
+
 .search {
     /* position: relative; */
     display: flex;
@@ -81,7 +77,7 @@ body .custom-vue-selector-wrapper {
 }
 .reset-button:active{
     transform: translateY(1px);
-   filter: saturate(150%);
+    filter: saturate(150%);
 }
 .reset-button:hover{
    background-color: #7e7e7e;
@@ -115,15 +111,6 @@ body .custom-vue-selector-wrapper {
     font-weight: 500;
     cursor: pointer;
 }
-.custom-vue-selector__value:after{
-    content: "";
-    position: absolute;
-    right: 15px;
-    display: block;
-    background: url('./img/down-arrow.png') no-repeat;
-    width: 12px;
-    height: 8px;
-}
 .project-title{
     color: #52a6de;
     font-weight: 600;
@@ -132,7 +119,41 @@ body .custom-vue-selector-wrapper {
 .selected-values__selector li:last-of-type {
     border-bottom: none;
 }
+.multiple-selector{
+    padding-top: 18px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+}
+.multiple-selector__value ul{
+    padding: 0;
+    margin: 0;
+}
+.multiple-selector__value li{
+    list-style: none;
+    color: #52a6de;
+}
 
+.multiple-selector__titles{
+    text-align: left;
+    font-weight: 400;
+    color: #5d5d5d;
+    padding-left: 15px;
+    margin-bottom: 0px;
+}
+
+.multiple-selector__value li:hover{
+    color:#ff9620;
+    cursor: pointer;
+}
+.multiple-selector__value li:active{
+    color:#ff9620;
+    cursor: pointer;
+}
+hr{
+    margin-top: 10px;
+}
 @media screen and (min-width: 1200px) {
     .container-fluid {
         max-width: 1050px;
