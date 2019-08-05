@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Poppins:300,400,700&amp;display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -19,20 +21,32 @@
         <div class="row">
           <div class="col-12 col-lg-3">
             <!-- place your content here -->
+            
+            <form>
+            <div class="search-bar">
+                <div class="search">
+              <input type="text" class="searchTerm" placeholder="Search..">
+              <button type="submit" class="searchButton">
+                  <i class="fa fa-search fa-5x"></i>
+              </button>
+            </div>
           </div>
+          </form>
+          </div>
+          
           <div class="col-12 col-lg-9">
             <div class="row">
               <div class="col-12 col-md-3">
-                <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values"
-                  title="Programming Languages" :selected_value="programmingLanguages.selectedValue"></vue-selector>
+                <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values" 
+                :selected_value="programmingLanguages.selectedValue"></vue-selector>
               </div>
               <div class="col-12 col-md-3">
-                <vue-selector @value-selected="changeSelectedValues" :values="databases.values" title="Databases"
+                <vue-selector @value-selected="changeSelectedValues" :values="databases.values"
                   :selected_value="databases.selectedValue">
                 </vue-selector>
               </div>
               <div class="col-12 col-md-3">
-                <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries"
+                <vue-selector @value-selected="changeSelectedValues" :values="industries.values"
                   :selected_value="industries.selectedValue">
                 </vue-selector>
               </div>
@@ -41,12 +55,9 @@
               </div>
             </div>
             <div class="row">
-              <div class="sidebar">
-                <div></div>
-              </div>
               <div v-for="(project, index) in this.sortedProjects" :key="index" class="col-8 col-md-4">
                 <div class="azati-portfolio__card-wrapper">
-                  <p>{{project.title}}</p>
+                  <p class="project-title">{{project.title}}</p>
                   <p>{{project.description}}</p>
                 </div>
               </div>

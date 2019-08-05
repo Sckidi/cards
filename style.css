@@ -7,21 +7,61 @@ body .custom-vue-selector-wrapper {
 }
 
 .azati-portfolio__card-wrapper{
-    border: 1px solid darkgrey;
     padding: 15px;
     margin-bottom: 30px;
+    -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    border-radius: 5px 5px 0 0;
 }
-
+.multiple-selector{
+    border: 1px solid darkgray;
+    text-align: center;
+    padding-top: 18px;
+}
+.search {
+    /* position: relative; */
+    display: flex;
+  }
+.search-bar{
+    width: 100px;
+    /* position: absolute; */
+  }
+.searchTerm{
+    width: 150px;
+    border: 1px solid #52a6de;
+    border-right: none;
+    padding: 5px;
+    height: 30px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+.searchButton {
+    position: absolute;
+    margin-left: 150px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #52a6de;
+    background: #52a6de;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
 .custom-vue-selector {
     position: relative;
     max-width: 300px;
     margin-bottom: 20px;
+    height: 35px;
+    border-radius: 5px 0 5px 0;
     font-size: 13px;
-}
-.left-selector {
-    border: 1px solid black;
-    width: 155px;
-    height: 900px;
+    text-align: center;
+    color: #52a6de;
+    -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
 }
 .custom-vue-selector__selector {
     margin: 0px;
@@ -72,10 +112,21 @@ body .custom-vue-selector-wrapper {
 .custom-vue-selector__value {
     margin-bottom: 0px;
     padding: 5px;
-    border: 1px solid darkgrey;
     font-weight: 500;
-    background-image: url('/cards/img/down-arrow.png');
     cursor: pointer;
+}
+.custom-vue-selector__value:after{
+    content: "";
+    position: absolute;
+    right: 15px;
+    display: block;
+    background: url('./img/down-arrow.png') no-repeat;
+    width: 12px;
+    height: 8px;
+}
+.project-title{
+    color: #52a6de;
+    font-weight: 600;
 }
 
 .selected-values__selector li:last-of-type {
