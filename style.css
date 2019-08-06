@@ -5,7 +5,12 @@ body .custom-vue-selector-wrapper {
     font-family: 'Montserrat', sans-serif;
     color: #5d5d5d;
 }
-
+h1{
+    text-align: center;
+    margin-bottom: 80px;
+    color: #52a6de;
+    font-weight: 600;
+}
 .azati-portfolio__card-wrapper{
     /* padding: 15px; */
     margin-bottom: 30px;
@@ -84,14 +89,15 @@ form{
     box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
 }
 .custom-vue-selector__selector {
-    margin: 0px;
+    margin-top: 10px;
     padding: 0px;
     visibility: hidden;
     height: 0px;
     list-style: none;
     position: absolute;
-    z-index: 1;
-    background-color: white;
+    z-index: 2;
+    background-color: #ff9620;
+    border-radius: 5px;
 }
 .reset-button {
     position: relative;
@@ -117,16 +123,14 @@ form{
 }
 
 .custom-vue-selector__selector__item {
-    border: 1px solid darkgrey;
-    border-top: none;
-    width: 225px;
+    width: 166px;
     padding: 5px;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 1;
+    color: #fff;
+    text-align: left;
 }
-.custom-vue-selector__selector__item:hover {
-    background-color: #fbfbfb;
-}
+
 
 .custom-vue-selector__label{
     margin-bottom: 5px;
@@ -185,6 +189,24 @@ form{
 hr{
     margin-top: 10px;
     margin-bottom: 20px;
+}
+.circle {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    border: 1px solid #fff;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-top: 8px;
+    margin-right: 8px
+}
+.custom-vue-selector__selector__item:hover .circle{
+    background-color: #fff;
+    border-radius: 5px;
+}
+.circle:hover{
+    background-color: #fff;
 }
 .card{
     border: none;
