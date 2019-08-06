@@ -7,52 +7,69 @@ body .custom-vue-selector-wrapper {
 }
 
 .azati-portfolio__card-wrapper{
-    padding: 15px;
+    /* padding: 15px; */
     margin-bottom: 30px;
     -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     border-radius: 5px 5px 0 0;
 }
-
+.azati-portfolio__card-description{
+    padding: 15px;
+}
 .search {
     /* position: relative; */
     display: flex;
+   
   }
+.searchItem{
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+}
 .search-bar{
     width: 100px;
     /* position: absolute; */
   }
+form{
+    padding-bottom: 25px;
+}
 .searchTerm{
     width: 150px;
-    border: 1px solid #52a6de;
-    border-right: none;
+    border: none;
     padding: 5px;
     height: 30px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    color: #9DBFAF;
+    color: #52a6de;
+
 }
 .searchButton {
     position: absolute;
-    margin-left: 150px;
+    margin-left: 200px;
     width: 30px;
     height: 30px;
-    border: 1px solid #52a6de;
-    background: #52a6de;
+    border: none;
+    background: #fff;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
   }
+  .img-search{
+      height: 20px;
+      padding-bottom: 5px;
+}
 .custom-vue-selector {
     position: relative;
     max-width: 300px;
-    margin-bottom: 20px;
-    height: 35px;
-    border-radius: 5px 0 5px 0;
-    font-size: 13px;
+    margin-bottom: 80px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-top: 8px;
     text-align: center;
     color: #52a6de;
     -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
@@ -70,10 +87,19 @@ body .custom-vue-selector-wrapper {
     background-color: white;
 }
 .reset-button {
-    border: solid 1px transparent;
-    border-radius: 4px;
-    margin-top: 25px;
-    width: 150px;
+    position: relative;
+    width: 175px;
+    margin-bottom: 80px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+    background-color: #52a6de;
+    border: none;
+    -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
+    box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
 }
 .reset-button:active{
     transform: translateY(1px);
@@ -126,13 +152,13 @@ body .custom-vue-selector-wrapper {
     -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
 }
-.multiple-selector__value ul{
-    padding: 0;
-    margin: 0;
+.multiple-selector__value{
+    padding-left: 15px;
 }
 .multiple-selector__value li{
     list-style: none;
     color: #52a6de;
+    margin-bottom: 15px;
 }
 
 .multiple-selector__titles{
@@ -153,6 +179,19 @@ body .custom-vue-selector-wrapper {
 }
 hr{
     margin-top: 10px;
+    margin-bottom: 20px;
+}
+.card{
+    border: none;
+}
+.card-image{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+.img-arrow{
+    height: 10px;
+    color: #52a6de;
 }
 @media screen and (min-width: 1200px) {
     .container-fluid {

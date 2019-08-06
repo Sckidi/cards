@@ -22,14 +22,16 @@
           <div class="col-12 col-lg-3">
             <!-- place your content here -->
             <form>
+            <div class="searchItem">
             <div class="search-bar">
                 <div class="search">
               <input type="text" class="searchTerm" placeholder="Search..">
               <button type="submit" class="searchButton">
-                  <i class="fa fa-search fa-5x"></i>
+                  <img class="img-search" src="img/search.png">
               </button>
             </div>
           </div>
+        </div>
           </form>
           <div class="multiple-selector">
             <p class="multiple-selector__titles">Programming languages</p>
@@ -54,16 +56,16 @@
           <div class="col-12 col-lg-9">
             <div class="row">
               <div class="col-12 col-md-3">
-                <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values" 
+                <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values" title="Languages"  
                 :selected_value="programmingLanguages.selectedValue"></vue-selector>
               </div>
               <div class="col-12 col-md-3">
-                <vue-selector @value-selected="changeSelectedValues" :values="databases.values"
+                <vue-selector @value-selected="changeSelectedValues" :values="databases.values" title="Databases"
                   :selected_value="databases.selectedValue">
                 </vue-selector>
               </div>
               <div class="col-12 col-md-3">
-                <vue-selector @value-selected="changeSelectedValues" :values="industries.values"
+                <vue-selector @value-selected="changeSelectedValues" :values="industries.values" title="Industries"
                   :selected_value="industries.selectedValue">
                 </vue-selector>
               </div>
@@ -72,12 +74,17 @@
               </div>
             </div>
             <div class="row">
-              <div v-for="(project, index) in this.sortedProjects" :key="index" class="col-8 col-md-4">
+              <div class="card-columns">
+              <div v-for="(project, index) in this.sortedProjects" :key="index" class="card">
                 <div class="azati-portfolio__card-wrapper">
+                  <img v-bind:src="project.image" class="card-image"/>
+                  <div class="azati-portfolio__card-description">
                   <p class="project-title">{{project.title}}</p>
                   <p>{{project.description}}</p>
                 </div>
+                </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -99,11 +106,11 @@
         projects: [],
         sortedProjects: [],
         databases: {
-          selectedValue: 'Nothing Selected',
+          selectedValue: 'Databases',
           values: []
         },
         programmingLanguages: {
-          selectedValue: 'Nothing Selected',
+          selectedValue: 'Languages',
           values: []
         },
         technologies: {
@@ -111,7 +118,7 @@
           values: []
         },
         industries: {
-          selectedValue: 'Nothing Selected',
+          selectedValue: 'Industries',
           values: []
         },
         // JSON Settings
@@ -149,7 +156,7 @@
             case 'Databases':
               this.databases.selectedValue = value;
               break;
-            case 'Programming Languages':
+            case 'Languages':
               this.programmingLanguages.selectedValue = value;
               break;
             case 'Technologies':
@@ -169,18 +176,18 @@
 
           // Filter by programming language
           if (this.programmingLanguages.selectedValue.length > 0 && this.programmingLanguages.selectedValue !=
-            'Nothing Selected') {
+            'Languages') {
             sortedProjects = sortedProjects.filter(project => project.programming_languages.includes(this
               .programmingLanguages.selectedValue))
           }
           // Filter by databases
-          if (this.databases.selectedValue.length > 0 && this.databases.selectedValue != 'Nothing Selected') {
+          if (this.databases.selectedValue.length > 0 && this.databases.selectedValue != 'Databases') {
             sortedProjects = sortedProjects.filter(project => project.databases.includes(this.databases
               .selectedValue))
           }
 
           // Filter by industries
-          if (this.industries.selectedValue.length > 0 && this.industries.selectedValue != 'Nothing Selected') {
+          if (this.industries.selectedValue.length > 0 && this.industries.selectedValue != 'Industries') {
             console.log("Fired");
             sortedProjects = sortedProjects.filter(project => project.industries.includes(this.industries
               .selectedValue))
@@ -190,9 +197,9 @@
           this.sortedProjects = sortedProjects;
         },
         resetFilers() {
-          this.programmingLanguages.selectedValue = 'Nothing Selected';
-          this.databases.selectedValue = 'Nothing Selected';
-          this.industries.selectedValue = 'Nothing Selected';
+          this.programmingLanguages.selectedValue = 'Languages';
+          this.databases.selectedValue = 'Databases';
+          this.industries.selectedValue = 'Industries';
           this.reSortProjects()
         }
       }

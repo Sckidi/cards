@@ -1,11 +1,10 @@
 let VueSelector = Vue.component('vue-selector', {
   template: `
     <div class="custom-vue-selector">
-      <p class="custom-vue-selector__label"> {{ title }} </p>
-      <p class="custom-vue-selector__value" @click="handleSelectorLabelClick('programmingLanguages')">{{selected_value}}</p>
-      <ul class="custom-vue-selector__selector" v-bind:class="{ active: isOpened }">
+      <p class="custom-vue-selector__value" @click="handleSelectorLabelClick('programmingLanguages')">{{selected_value}} <img class="img-arrow" src="img/down-arrow.png"></p>
+      <ul class="custom-vue-selector__selector" v-bind:class="{ active: isOpened }"> 
           <li class="custom-vue-selector__selector__item" v-on:click="handleSelectorElementClick(language)" v-for="language in values">{{language}}
-
+          
           </li>
       </ul>
     </div>
