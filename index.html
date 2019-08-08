@@ -20,13 +20,13 @@
       <div id="vue">
         <h1>Portfolio</h1>
         <div class="row">
-          <div class="col-12 col-lg-3">
+          <div class="col-12 col-lg-3 col-md-3">
             <!-- place your content here -->
             <form>
             <div class="searchItem">
             <div class="search-bar">
                 <div class="search">
-              <input type="text" class="searchTerm" placeholder="SEARCH">
+              <input type="text" v-model="search" class="searchTerm" placeholder="SEARCH">
               <button type="submit" class="searchButton">
                   <img class="img-search" src="img/search.png">
               </button>
@@ -64,7 +64,7 @@
           </div>
           </div>
           
-          <div class="col-12 col-lg-9">
+          <div class="col-12 col-lg-9 col-md-9">
             <div class="row">
               <div class="col-12 col-md-3">
                 <vue-selector @value-selected="changeSelectedValues" :values="programmingLanguages.values" title="Languages"  
@@ -96,7 +96,7 @@
                 </div>
               </div>
             </div>
-            </div>
+          </div>
           </div>
         </div>
       </div>
@@ -116,6 +116,7 @@
         // Models extracted from JSON
         projects: [],
         sortedProjects: [],
+        search: "",
         databases: {
           selectedValue: 'Databases',
           values: []
@@ -212,6 +213,11 @@
           this.databases.selectedValue = 'Databases';
           this.industries.selectedValue = 'Industries';
           this.reSortProjects()
+        },
+        filteredList() {
+        return this.projects.filter(project => {
+        return project.description.toLowerCase().includes(this.search.toLowerCase())
+          })
         }
       }
     })

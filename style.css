@@ -76,7 +76,7 @@ form{
 }
 .custom-vue-selector {
     position: relative;
-    max-width: 300px;
+    width: 100%;
     margin-bottom: 60px;
     height: 50px;
     border-radius: 5px;
@@ -84,24 +84,34 @@ form{
     padding-top: 8px;
     text-align: center;
     color: #52a6de;
+    z-index: 5500;
     -webkit-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     -moz-box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
     box-shadow: 0px 4px 13px 3px rgba(211,211,211,0.5);
 }
 .custom-vue-selector__selector {
-    margin-top: 10px;
+    margin-top: -10px;
     padding: 0px;
     visibility: hidden;
     height: 0px;
     list-style: none;
-    position: absolute;
-    z-index: 2;
+    z-index: 5000;
     background-color: #ff9620;
     border-radius: 5px;
 }
+.custom-vue-selector__selector__item {
+    width: 166px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    z-index: 9999;
+    color: #fff;
+    text-align: left;
+}
+
 .reset-button {
     position: relative;
-    width: 175px;
+    width: 100%;
     margin-bottom: 60px;
     height: 50px;
     border-radius: 5px;
@@ -121,17 +131,6 @@ form{
     visibility: visible;
     height: initial;
 }
-
-.custom-vue-selector__selector__item {
-    width: 166px;
-    padding: 5px;
-    cursor: pointer;
-    z-index: 1;
-    color: #fff;
-    text-align: left;
-}
-
-
 .custom-vue-selector__label{
     margin-bottom: 5px;
     font-weight: 500;    
@@ -224,8 +223,63 @@ hr{
     color: #52a6de;
     margin: 0 5px;
 }
+.col-12 .col-md-3:last-of-type{
+    padding-right: 0;
+}
+.custom-vue-selector__value:active .img-arrow{
+    transform: scale(1, -1);
+}
 @media screen and (min-width: 1200px) {
     .container-fluid {
         max-width: 1050px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .card-columns{
+        column-count: 2;
+    }
+    .searchButton{
+        margin: 0 10px 0 150px;
+    }
+    .custom-vue-selector__selector__item{
+        width: 156px;
+        margin-top: 15px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .multiple-selector{
+        margin-right: 0;
+    }
+    .searchItem{
+        margin-right: 0;
+    }
+    .col-12 .col-md-3{
+        padding-right: 0;
+    }
+    .searchButton{
+        margin: 0 10px 0 120px;
+    }
+    .card-columns{
+        column-count: 1;
+    }
+    .custom-vue-selector__selector__item{
+        width: 108px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .searchButton{
+        margin: 0 10px 0 320px;
+    }
+    .custom-vue-selector__selector__item{
+        width: 355px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .searchButton{
+        margin: 0 10px 0 280px;
+    }
+    .custom-vue-selector__selector__item{
+        width: 315px;
     }
 }
